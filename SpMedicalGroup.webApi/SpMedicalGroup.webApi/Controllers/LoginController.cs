@@ -17,6 +17,6 @@ namespace SpMedicalGroup.webApi.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-
+        
     }
 }

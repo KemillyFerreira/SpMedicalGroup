@@ -17,5 +17,6 @@ namespace SpMedicalGroup.webApi.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+
     }
 }

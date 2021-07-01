@@ -39,7 +39,7 @@ namespace SpMedicalGroup.webApi.Controllers
         /// </summary>
         /// <returns> uma lista de consultas e um status code 200 - Ok </returns>
         [HttpGet]
-        
+
         public IActionResult Get()
         {
             //se tudo dar certo
@@ -63,19 +63,47 @@ namespace SpMedicalGroup.webApi.Controllers
         /// <param name="novaConsultum"> é o objeto novaConsultum que será cadastrado</param>
         /// <returns> um status code -Created</returns>
         [HttpPost]
-        
+
         public IActionResult Post(Consultum novaConsultum)
         {
             try
             {
+                // faz a chamada para o método
                 _consultumRepository.Cadastrar(novaConsultum);
 
+                // retorna um status code
                 return StatusCode(201);
             }
-            catch (Exception)
+            catch (Exception ex)
+            {
+                //retorna a exception w um status code 400 - Bad Request
+                return BadRequest(ex);
+            }
+        }
+
+
+        /// <summary>
+        /// atualiza uma consulta existente
+        /// </summary>
+        /// <param name="id"> id da consulta que será atualizada </param>
+        /// <param name="consultumAtualizada"> objeto com as novas informações </param>
+        /// <returns> um status code 204 - No Content </returns>
+        [HttpPut("{id}")]
+
+        public IActionResult Put(int id, Consultum consultumAtualizada)
+        {
+            try
+            {
+                //faz a chamada para o método
+                _consultumRepository.Atualizar(id, consultumAtualizada);
+
+                return StatusCode(204);
+            }
+
+            catch (Exception ex)
             {
 
-                throw;
+                return BadRequest(ex);
             }
         }
     }
