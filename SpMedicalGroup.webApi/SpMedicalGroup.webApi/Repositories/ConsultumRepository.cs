@@ -12,6 +12,11 @@ namespace SpMedicalGroup.webApi.Repositories
     {
         SpMedicalGroupContext ctx = new SpMedicalGroupContext();
 
+        /// <summary>
+        /// busca e atualiza as informações das consultas
+        /// </summary>
+        /// <param name="id"> id da consulta requisitada </param>
+        /// <param name="consultumAtualizada"> consulta com as novas informações </param>
         public void Atualizar(int id, Consultum consultumAtualizada)
         {
             // busca uma consulta através do id
@@ -27,10 +32,7 @@ namespace SpMedicalGroup.webApi.Repositories
             if (consultumAtualizada.IdMedico != null)
             {
                 consultaBuscada.IdMedico = consultumAtualizada.IdMedico;
-            }
-
-            //if (consultumAtualizada.DataConsulta 
-
+            }      
 
             // verifica se a situação da consulta foi informada
             if (consultumAtualizada.Situacao != null )
@@ -44,8 +46,22 @@ namespace SpMedicalGroup.webApi.Repositories
                 consultaBuscada.Descricao = consultumAtualizada.Descricao;
             }
 
+            // verifica se a data da consulta foi informada
+            if(consultumAtualizada.DataConsulta > DateTime.Now)
+            {
+                consultaBuscada.DataConsulta = consultumAtualizada.DataConsulta;
+            }
+
+            ctx.Consulta.Update(consultaBuscada);
+
+            ctx.SaveChanges();
         }
 
+
+        /// <summary>
+        /// cadastra uma nova consulta
+        /// </summary>
+        /// <param name="novaConsultum"></param>
         public void Cadastrar(Consultum novaConsultum)
         {
             // adicionando uma nova consulta
@@ -55,6 +71,7 @@ namespace SpMedicalGroup.webApi.Repositories
             ctx.SaveChanges();
         }
 
+
         /// <summary>
         ///  lista todas as consultas, sem exceção
         /// </summary>
@@ -63,6 +80,7 @@ namespace SpMedicalGroup.webApi.Repositories
         {
             return ctx.Consulta.ToList();
         }
+
 
         /// <summary>
         /// vai listar apenas as consultas de um determinado usuário
@@ -90,8 +108,6 @@ namespace SpMedicalGroup.webApi.Repositories
                 // estabelece o id como parâmetro 
                 .Where(p => p.IdConsulta == id)
                 .ToList(); 
-
-
         }
     }
 }
