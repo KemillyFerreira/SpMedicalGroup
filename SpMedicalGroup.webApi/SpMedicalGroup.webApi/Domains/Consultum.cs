@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -11,6 +12,8 @@ namespace SpMedicalGroup.webApi.Domains
         public int? IdPaciente { get; set; }
         public int? IdMedico { get; set; }
         public DateTime DataConsulta { get; set; }
+
+        [Required(ErrorMessage = "O campo situação é obrigatório!")]
         public string Situacao { get; set; }
         public string Descricao { get; set; }
 

@@ -102,7 +102,6 @@ namespace SpMedicalGroup.webApi.Controllers
 
             catch (Exception ex)
             {
-
                 return BadRequest(ex);
             }
         }
