@@ -36,6 +36,6 @@ namespace SpMedicalGroup.webApi.Interfaces
         /// <param name="id"> id do usuário que terá suas consultas listadas </param>
         /// <returns> retorna apenas as consultas do usuário buscado </returns>
         List<Consultum> ListarMinhasConsultas(int id);
-        object ListarMinhasConsultas();
+
     }
 }

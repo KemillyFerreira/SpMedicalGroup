@@ -5,6 +5,7 @@ using SpMedicalGroup.webApi.Interfaces;
 using SpMedicalGroup.webApi.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,7 +40,6 @@ namespace SpMedicalGroup.webApi.Controllers
         /// </summary>
         /// <returns> uma lista de consultas e um status code 200 - Ok </returns>
         [HttpGet]
-
         public IActionResult Get()
         {
             //se tudo dar certo
@@ -105,5 +105,30 @@ namespace SpMedicalGroup.webApi.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpGet("mine")]
+        public IActionResult Getmy()
+        {
+            try
+            {
+                // cria uma variável IdUsuario que recebe o valor do ID do usuario que está logado (o id entra como string, por isso o Int32)
+                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                
+                // retorna a resposta da requisição 200 - Ok fazendo a chamada para o método e  trazendo a lista 
+                return Ok(_consultumRepository.ListarMinhasConsultas(idUsuario));
+            }
+
+            catch (Exception error)
+            {
+                // retorna a resposta da requisição 400 - Bad Request e o erro ocorrido
+                return BadRequest(new
+                {
+                    mensagem = "Não é possível mostrar as consultas se o usuário não estiver logado!",
+                    error
+                });
+            }          
+        }
     }
 }
+
+

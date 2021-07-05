@@ -87,26 +87,27 @@ namespace SpMedicalGroup.webApi.Repositories
         /// </summary>
         /// <param name="id"> id do usuário que terá as consultas listadas</param>
         /// <returns> lista de consultas </returns>
-        public List<Consultum> ListarMinhasConsultas(int id)
+        public List<Consultum> ListarMinhasConsultas(int idUsuario)
         {
             return ctx.Consulta
                 
                 //include -> "entra" nas tabelas 
 
                 // traz as informações da tabela paciente
-                .Include(p => p.IdPacienteNavigation)
+                .Include(c => c.IdPacienteNavigation)
 
                 // traz as informações da tabela medico
-                .Include(p => p.IdMedicoNavigation)
+                .Include(c => c.IdMedicoNavigation)
 
                 // traz as informações da tabela medico e "filtra" para as informações do usuário
-                .Include(p => p.IdMedicoNavigation.IdUsuarioNavigation)
+                .Include(c => c.IdMedicoNavigation.IdUsuarioNavigation)
 
                 // traz as informações da tabela paciente mais o id do usuario
-                .Include(p => p.IdPacienteNavigation.IdUsuarioNavigation)
+                .Include(c => c.IdPacienteNavigation.IdUsuarioNavigation)
 
                 // estabelece o id como parâmetro 
-                .Where(p => p.IdConsulta == id)
+                .Where(c => c.IdPacienteNavigation.IdUsuario == idUsuario || c.IdMedicoNavigation.IdUsuario == idUsuario)
+
                 .ToList(); 
         }
     }

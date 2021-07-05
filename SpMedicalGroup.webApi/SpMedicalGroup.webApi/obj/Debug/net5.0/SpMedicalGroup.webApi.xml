@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SpMedicalGroup.webApi</name>
+    </assembly>
+    <members>
+        <member name="P:SpMedicalGroup.webApi.Controllers.ConsultumController._consultumRepository">
+            <summary>
+            o objeto _consultumRepository vai receber todos os métodos definidos na interface 
+            </summary>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Controllers.ConsultumController.#ctor">
+            <summary>
+             instancia o objeto _consultumRepository para ter referência aos métodos do repositório
+            </summary>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Controllers.ConsultumController.Get">
+            <summary>
+            lista todas as consultas
+            </summary>
+            <returns> uma lista de consultas e um status code 200 - Ok </returns>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Controllers.ConsultumController.Post(SpMedicalGroup.webApi.Domains.Consultum)">
+            <summary>
+            cadastra uma nova consulta
+            </summary>
+            <param name="novaConsultum"> é o objeto novaConsultum que será cadastrado</param>
+            <returns> um status code -Created</returns>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Controllers.ConsultumController.Put(System.Int32,SpMedicalGroup.webApi.Domains.Consultum)">
+            <summary>
+            atualiza uma consulta existente
+            </summary>
+            <param name="id"> id da consulta que será atualizada </param>
+            <param name="consultumAtualizada"> objeto com as novas informações </param>
+            <returns> um status code 204 - No Content </returns>
+        </member>
+        <member name="P:SpMedicalGroup.webApi.Controllers.LoginController._usuarioRepository">
+            <summary>
+            cria o objeto _usuarioRepository para receber todos os métodos definidos na interface
+            </summary>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Controllers.LoginController.#ctor">
+            <summary>
+            instancia esse objeto para que haja referência aos métodos do repositório
+            </summary>
+        </member>
+        <member name="P:SpMedicalGroup.webApi.Controllers.UsuarioController._usuarioRepository">
+            <summary>
+            Objeto _usuarioRepository que irá receber todos os métodos definidos na interface IuUsuarioRepository
+            </summary>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Interfaces.IConsultumRepository.Listar">
+            <summary>
+            lista todos as consultas
+            </summary>
+            <returns> lista de consultas </returns>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Interfaces.IConsultumRepository.Cadastrar(SpMedicalGroup.webApi.Domains.Consultum)">
+            <summary>
+            cadastra uma nova consulta
+            </summary>
+            <param name="novaConsultum"> novaConsultum será o novo objeto cadastrado </param>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Interfaces.IConsultumRepository.Atualizar(System.Int32,SpMedicalGroup.webApi.Domains.Consultum)">
+            <summary>
+            atualiza a descrição de uma determinada consulta 
+            </summary>
+            <param name="id"> busca uma consulta pelo id e atualiza </param>
+            <param name="consultumAtualizada"> consulta com a nova descrição </param>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Interfaces.IConsultumRepository.ListarMinhasConsultas(System.Int32)">
+            <summary>
+            lista apenas as consultas de um determinado usuário
+            </summary>
+            <param name="id"> id do usuário que terá suas consultas listadas </param>
+            <returns> retorna apenas as consultas do usuário buscado </returns>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Interfaces.IUsuarioRepository.Login(System.String,System.String)">
+            <summary>
+            validação do usuário
+            </summary>
+            <param name="email"> e-mail do usuario </param>
+            <param name="senha"> senha do usuario </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Repositories.ConsultumRepository.Atualizar(System.Int32,SpMedicalGroup.webApi.Domains.Consultum)">
+            <summary>
+            busca e atualiza as informações das consultas
+            </summary>
+            <param name="id"> id da consulta requisitada </param>
+            <param name="consultumAtualizada"> consulta com as novas informações </param>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Repositories.ConsultumRepository.Cadastrar(SpMedicalGroup.webApi.Domains.Consultum)">
+            <summary>
+            cadastra uma nova consulta
+            </summary>
+            <param name="novaConsultum"></param>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Repositories.ConsultumRepository.Listar">
+            <summary>
+             lista todas as consultas, sem exceção
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Repositories.ConsultumRepository.ListarMinhasConsultas(System.Int32)">
+            <summary>
+            vai listar apenas as consultas de um determinado usuário
+            </summary>
+            <param name="id"> id do usuário que terá as consultas listadas</param>
+            <returns> lista de consultas </returns>
+        </member>
+        <member name="M:SpMedicalGroup.webApi.Repositories.UsuarioRepository.Login(System.String,System.String)">
+            <summary>
+            validação do usuário
+            </summary>
+            <param name="email"> e-mail do usuário </param>
+            <param name="senha"> senha do usuário </param>
+            <returns></returns>
+        </member>
+        <member name="T:SpMedicalGroup.webApi.ViewModels.LoginViewModel">
+            <summary>
+            classe responsável pelo modelo login
+            </summary>
+        </member>
+    </members>
+</doc>
