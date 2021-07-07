@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpMedicalGroup.webApi.Domains;
 using SpMedicalGroup.webApi.Interfaces;
@@ -62,6 +63,7 @@ namespace SpMedicalGroup.webApi.Controllers
         /// </summary>
         /// <param name="novaConsultum"> é o objeto novaConsultum que será cadastrado</param>
         /// <returns> um status code -Created</returns>
+        [Authorize(Roles = "1")]
         [HttpPost]
 
         public IActionResult Post(Consultum novaConsultum)
